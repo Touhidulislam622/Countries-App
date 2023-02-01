@@ -1,9 +1,32 @@
-import React from 'react'
+import React from "react";
+import style from "../CountryM/country.module.css";
 
-const Country = () => {
+const Country = (props) => {
+  const { name, flags, capital, population, area } = props.country;
+
+  const handleRemoveCountry = (name) => {
+    props.onRemoveCountry(name);
+  };
+
   return (
-    <div>Country</div>
-  )
-}
+    <article className={style.country}>
+      <div>
+        <img src={flags.png} alt={name.common} className={style.flag} />
+        <h3>Name: {name.common}</h3>
+        <h3>Population: {population}</h3>
+        <h3>Capital: {capital}</h3>
+        <h3>Area: {area}</h3>
 
-export default Country
+        <button
+          className={style.button}
+          onClick={() => {
+            handleRemoveCountry(name.common)
+          }}>
+          Remove Country
+        </button>
+      </div>
+    </article>
+  );
+};
+
+export default Country;
